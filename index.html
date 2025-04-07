@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Tennis Scoreboard</title>
+  <style>
+    body {
+      background-color: black;
+      color: white;
+      font-family: sans-serif;
+      font-size: 24px;
+      padding: 20px;
+    }
+    .court {
+      margin-bottom: 20px;
+      padding: 10px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 10px;
+    }
+    .title {
+      font-size: 28px;
+      margin-bottom: 10px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div id="scoreboard"></div>
+
+  <script>
+    function loadData() {
+      fetch("data.json")
+        .then(res => res.json())
+        .then(data => {
+          const container = document.getElementById("scoreboard");
+          container.innerHTML = "";
+          for (let court in data) {
+            const courtDiv = document.createElement("div");
+            courtDiv.className = "court";
+            courtDiv.innerHTML = `
+              <div class="title">${court.toUpperCase()}</div>
+              Player A: ${data[court].playerA} <br>
+              Player B: ${data[court].playerB}
+            `;
+            container.appendChild(courtDiv);
+          }
+        });
+    }
+
+    loadData();
+    setInterval(loadData, 5000); // авто-освежување на 5 секунди
+  </script>
+</body>
+</html>
