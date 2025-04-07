@@ -1,0 +1,14 @@
+{
+  "court1": {
+    "playerA": 30,
+    "playerB": 15
+  },
+  "court2": {
+    "playerA": 40,
+    "playerB": 30
+  },
+  "court3": {
+    "playerA": 15,
+    "playerB": 40
+  }
+}
